@@ -1,0 +1,55 @@
+body{
+    background-image: url('../img/bg.jpg');
+    background-size: 500px;
+    height: 100vh;
+    padding-top: 2.5vh;
+    padding-bottom: 2.5vh;
+}
+
+.card-header{
+    /* height: 7.5vh; */
+}
+
+.card-body{
+    height: 80vh;
+}
+
+.card-footer{
+    /* height: 7.5vh; */
+}
+
+.bg-pink{
+    background-color: seashell;
+}
+
+.btn-pink{
+    background-color: pink;
+}
+
+.btn-pink:hover{
+    background-color: lightpink;
+    color: white;
+}
+
+.v-center{
+    margin-top: 35vh !important;
+}
+
+*{
+    scrollbar-width: thin;
+    scrollbar-color: blue orange;
+}
+
+*::-webkit-scrollbar {
+    width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    background: seashell;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: mistyrose;
+    border-radius: 20px;
+    border: 1px solid seashell;
+}

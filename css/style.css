@@ -6,16 +6,8 @@ body{
     padding-bottom: 2.5vh;
 }
 
-.card-header{
-    /* height: 7.5vh; */
-}
-
 .card-body{
     height: 80vh;
-}
-
-.card-footer{
-    /* height: 7.5vh; */
 }
 
 .bg-pink{
@@ -52,4 +44,8 @@ body{
     background-color: mistyrose;
     border-radius: 20px;
     border: 1px solid seashell;
+}
+
+#CCList{
+    max-height: 50vh;
 }

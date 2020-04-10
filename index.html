@@ -75,6 +75,54 @@
             </div>
         </div>
 
+        <!-- Modal Detail Criteria -->
+        <div class="modal fade" id="modalCriteria" tabindex="-1" role="dialog" aria-labelledby="modalCriteriaLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form id="formCriteria" data-id="">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalCriteriaLabel"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="bobot">Bobot</label>
+                                        <input type="number" name="bobot" id="bobot" class="form-control" placeholder="Bobot kriteria" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="nCi">Jumlah Kategori</label>
+                                        <input type="number" name="nCi" id="nCi" class="form-control" placeholder="Jumlah kategori kriteria" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row mt-2 overflow-auto" id="CCList">
+                                <div class="col-12">
+                                    <h6>Daftar Kategori</h6>
+                                    <table class="table mt-2" id="criteriaCategoryList">
+                                        <thead></thead>
+                                        <tbody>
+                                            
+                                        </tbody>
+                                        <tfoot></tfoot>
+                                    </table>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-dismiss="modal">Tutup</button>
+                            <button type="submit" id="saveCriteria" class="btn btn-pink">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </div>
     
     <!-- Start JavaScript Section -->

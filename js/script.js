@@ -10,9 +10,26 @@ $(document).ready(function(){
 
         nc = $("#jumlahKriteria").val();
         na = $("#jumlahAlternatif").val();
+        let content = 
+        "<div class='row' id='CAList'>"+
+            "<div class='col-md-6'>"+
+                "<h5>Daftar Kriteria</h5>"+
+                "<table class='table mt-4' id='criteriaList'>"+
+                    "<thead></thead>"+
+                    "<tbody>"+
+                        
+                    "</tbody>"+
+                    "<tfoot></tfoot>"+
+                "</table>"+
+            "</div>"+
+            "<div class='col-md-6'>"+
+                "<h5>Daftar Alternatif</h5>"+
+            "</div>"+
+        "</div>";
 
         $("#modalSetUp").modal('hide');
         $("#getStarted").remove();
+        $("#main").append(content);
 
         let criteriaTable = $("#criteriaList tbody");
         for(let i = 1; i <= nc; i++){

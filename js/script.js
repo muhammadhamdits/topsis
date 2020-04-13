@@ -1,4 +1,5 @@
 var criteria = [];
+var alternative = [];
 var nc, na;
 
 $(document).ready(function(){
@@ -24,6 +25,13 @@ $(document).ready(function(){
             "</div>"+
             "<div class='col-md-6'>"+
                 "<h5>Daftar Alternatif</h5>"+
+                "<table class='table mt-4' id='alternativeList'>"+
+                    "<thead></thead>"+
+                    "<tbody>"+
+                        
+                    "</tbody>"+
+                    "<tfoot></tfoot>"+
+                "</table>"+
             "</div>"+
         "</div>";
 
@@ -32,6 +40,7 @@ $(document).ready(function(){
         $("#main").append(content);
 
         let criteriaTable = $("#criteriaList tbody");
+        let alternativeTable = $("#alternativeList tbody");
         for(let i = 1; i <= nc; i++){
             criteria[i] = [null, []];
             let tr = 
@@ -52,7 +61,45 @@ $(document).ready(function(){
 
             criteriaTable.append(tr);
         }
+        let trCriteria = 
+        "<tr>"+
+            "<td colspan='4' class='text-center'>"+
+                "<button class='btn btn-pink' disabled id='saveCriteria' onclick='saveCriteria(this)'>Next>></button>"+
+            "</td>"+
+        "</tr>";
+        criteriaTable.append(trCriteria);
+
+        for(let i = 1; i <= na; i++){
+            alternative[i] = [null, []];
+            let tr = 
+            "<tr>"+
+                "<th width='9%'>"+
+                    "A"+i+
+                "</th>"+
+                "<td width='80%'>"+
+                    "<input type='text' name='alternatif"+i+"' id='alternatif"+i+"' class='form-control alternatif' placeholder='Nama alternatif "+i+"' oninput='alternatif(this)' data-id='"+i+"'>"+
+                "</td>"+
+                "<td width='9%'>"+
+                    "<button class='btn btn-pink detailAlternatif' data-id='"+i+"' onclick='detailAlternatif(this)'  data-toggle='modal' data-target='#modalAlternative'>Detail</button>"+
+                "</td>"+
+                "<td width='2%'>"+
+                    "<span class='text-danger' id='status2"+i+"'>x</span>"
+                "</td>"+
+            "</tr>";
+
+            alternativeTable.append(tr);
+        }
+        let trAlternative = 
+        "<tr>"+
+            "<td colspan='4' class='text-center'>"+
+                "<button class='btn btn-pink' disabled id='saveAlternative' onclick='saveAlternative(this)'>Next>></button>"+
+            "</td>"+
+        "</tr>";
+        alternativeTable.append(trAlternative);
+
+
         $("#CAList").show();
+        $("#alternativeList").parent().hide();
     });
 
     $("#formCriteria").on("submit", function(e){
@@ -101,7 +148,9 @@ function kriteria(e){
 
 function detailCriteria(e) {
     let id = $(e).data('id');
+    let judul = $("#kriteria"+id).val();
     $("#formCriteria").data('id', id);
+    $("#modalCriteriaLabel").html(judul);
 
     if(criteria[id][0] != null){
         $("#bobot").val(criteria[id][0]);
@@ -119,6 +168,32 @@ function detailCriteria(e) {
     }
 }
 
+function detailAlternatif(e){
+    let id = $(e).data('id');
+    let judul = $("#alternatif"+id).val();
+    $("#formAlternative").data('id', id);
+    $("#modalAlternativeLabel").html(judul);
+    $("#bodyAlternative").html('');
+    // console.log(criteria);
+
+    for(let i = 1; i < criteria.length; i++){
+        let tr = 
+        "<div class='form-group'>"+
+            "<label for='kriteriaAlternatif"+i+"'>"+$("#kriteria"+i).val()+"</label>"+
+            "<select class='form-control' name='kriteriaAlternatif"+i+"' required>"+
+                "<option value='' selected disabled>Pilih Kategori</option>";
+                for(let j = 0; j < criteria[i][1].length; j++){
+                    tr +=
+                    "<option value='"+j+"'>"+criteria[i][1][j][1]+"</option>";
+                }
+                tr +=    
+            "</select>"+
+        "</div>";
+        $("#bodyAlternative").append(tr);
+    }
+
+}
+
 function checkValidation(array, id){
     if(array[id][0] != null && $("#kriteria"+id).val() != ''){
         $("#status"+id).html('v');
@@ -127,4 +202,24 @@ function checkValidation(array, id){
         $("#status"+id).html('x');
         $("#status"+id).attr('class', 'text-danger');
     }
+
+    let validate = true;
+    for(let i = 1; i <= array.length; i++){
+        if(array[i]){
+            if(array[i][0] == null || $("#kriteria"+i).val() == ''){
+                validate = false;
+            }
+        }
+    }
+    if(validate == true){
+        $("#saveCriteria").prop('disabled', false);
+    }else{
+        $("#saveCriteria").prop('disabled', true);
+    }
+}
+
+function saveCriteria(e){
+    $("#criteriaList input").prop('disabled', true);
+    $("#criteriaList button").prop('disabled', true);
+    $("#alternativeList").parent().show();
 }

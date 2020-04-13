@@ -22,6 +22,10 @@ body{
     background-color: lightpink;
     color: white;
 }
+.btn-pink:hover:disabled{
+    background-color: pink !important;
+    color: black !important;
+}
 
 .v-center{
     margin-top: 35vh !important;
